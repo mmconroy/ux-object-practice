@@ -35,12 +35,12 @@
     Creating a plant
 
     In order to keep track of your plants, you need to store them in your program.
-    Complete the getPlant() function, which returns an object representing a plant.
+    Complete the createPlant() function, which returns an object representing a plant.
     It should include all of the properties listed in the comment above the function.
 */
 
 /**
- * getPlant - Produces an object respresenting a plant.  It should have the following properties:
+ * createPlant - Produces an object respresenting a plant.  It should have the following properties:
  * @param {string} type - The Type of plant.  Possible values are [ "rose", "orchid", "lily", "lavender", "poppy", "begonia", "snapdragon", "marigold"] 
  * @param {boolean} isPerennial - A boolean showing if the plant is a perennial or not
  * @param {string} leafDescription - A visual description of the leaves
@@ -50,7 +50,7 @@
  * @param {number} gallonsWaterPerWeek - 0.0 to 3.0, representing the number of gallons of water needed per week for the plant
  * @param {number} amountOfSunNeeded - 0 to 10, representing the amount of sun needed
  */
-function getPlant(type, isPerennial, leafDescription, leafColor, flowerColor, flowerDescription, gallonsWaterPerWeek, amountOfSunNeeded) {
+function createPlant(type, isPerennial, leafDescription, leafColor, flowerColor, flowerDescription, gallonsWaterPerWeek, amountOfSunNeeded) {
     // Your Code Here!
     // Create a plant object, populate it with all of those values, and return it
 }
@@ -61,7 +61,7 @@ function getPlant(type, isPerennial, leafDescription, leafColor, flowerColor, fl
 console.log("-----Tests for Exercise One-----");
 let plantProperties = getAllTestPlants()[0];
 console.log("* Get a rose");
-let plant1 = getPlant(...plantProperties); // this is called a "spread" operator, it takes every value in the array and passes each into the function as a parameter
+let plant1 = createPlant(...plantProperties); // this is called a "spread" operator, it takes every value in the array and passes each into the function as a parameter
 let values1 = Object.values(plant1);
 let hasEveryProperty = true;
 for (let property of plantProperties) {
@@ -79,7 +79,7 @@ console.log(hasEveryProperty);
 
     Each plant must go in one of the three gardens of the estate.
 
-    The getEstate() has already been written for you, which returns an object representing the entire estate.
+    The createEstate() has already been written for you, which returns an object representing the entire estate.
     The estate contains three collections of plants: 
     the roseArbor, the perennialGarden, and the slopePlanters.
 
@@ -92,7 +92,7 @@ console.log(hasEveryProperty);
     The rest of the plans should be placed in the slop planters.
 */
 
-function getEstate() {
+function createEstate() {
     let estate = {
         roseArbor: [],
         perennialGarden: [],
@@ -113,10 +113,10 @@ function addPlantToEstate(estate, plant) {
 */
 console.log("-----Tests for Exercise Two-----");
 let plants2 = getAllTestPlants();
-let estate2 = getEstate();
+let estate2 = createEstate();
 
 console.log("* Add a rose");
-let rose2 = getPlant(...plants2[0]);
+let rose2 = createPlant(...plants2[0]);
 addPlantToEstate(estate2, rose2);
 console.log(estate2.roseArbor.length === 1 && estate2.perennialGarden.length === 0 && estate2.slopePlanters.length === 0 && estate2.roseArbor[0] === rose2);
 
@@ -125,17 +125,17 @@ addPlantToEstate(estate2, rose2);
 console.log(estate2.roseArbor.length === 2 && estate2.perennialGarden.length === 0 && estate2.slopePlanters.length === 0 && estate2.roseArbor[1] === rose2);
 
 console.log("* Add a perrenial");
-let orchid2 = getPlant(...plants2[1]);
+let orchid2 = createPlant(...plants2[1]);
 addPlantToEstate(estate2, orchid2);
 console.log(estate2.roseArbor.length === 2 && estate2.perennialGarden.length === 1 && estate2.slopePlanters.length == 0 && estate2.perennialGarden[0] === orchid2);
 
 console.log("* Add a high sun perrenial");
-let lavender2 = getPlant(...plants2[3]);
+let lavender2 = createPlant(...plants2[3]);
 addPlantToEstate(estate2, lavender2);
 console.log(estate2.roseArbor.length === 2 && estate2.perennialGarden.length === 1 && estate2.slopePlanters.length == 1 && estate2.slopePlanters[0] === lavender2);
 
 console.log("* Add a non-perrenial");
-let marigold2 = getPlant(...plants2[7]);
+let marigold2 = createPlant(...plants2[7]);
 addPlantToEstate(estate2, marigold2);
 console.log(estate2.roseArbor.length === 2 && estate2.perennialGarden.length === 1 && estate2.slopePlanters.length == 2 && estate2.slopePlanters[1] === marigold2);
 
@@ -193,7 +193,7 @@ function describeEstate(estate) {
    Run these commands to make sure you did it right. They should all be true.
 */
 console.log("-----Tests for Exercise Three-----");
-let estate3 = populateEstate();
+let estate3 = createdPopulatedEstate();
 console.log("* describePlant works and includes the flower color");
 let plantDescription3 = describePlant(estate3.roseArbor[0]);
 console.log(plantDescription3);
@@ -240,13 +240,13 @@ function calculateWaterUsagePerWeek(estate) {
    Run these commands to make sure you did it right. They should all be true.
 */
 console.log("-----Tests for Exercise Four-----");
-let estate4 = getEstate();
+let estate4 = createEstate();
 console.log("* Empty Estate");
 let emptyGallons = calculateWaterUsagePerWeek(estate4);
 console.log(emptyGallons === 0);
 
 console.log("* Calculate Whole Estate is equal to 12.");
-estate4 = populateEstate();
+estate4 = createdPopulatedEstate();
 let totalGallons = calculateWaterUsagePerWeek(estate4);
 console.log(totalGallons === 12);
 
@@ -321,7 +321,7 @@ function cloneAllTheRoses(estate) {
    Run these commands to make sure you did it right. They should all be true.
 */
 console.log("-----Tests for Exercise Four-----");
-let estate5 = populateEstate();
+let estate5 = createdPopulatedEstate();
 
 console.log("* Clone Rose");
 let rose5 = estate5.roseArbor[0];
@@ -363,12 +363,12 @@ console.log(hasNoRuinedRoses);
    But read through these and try to understand what they  do.
 */
 
-function populateEstate() {
-    let estate = getEstate();
+function createdPopulatedEstate() {
+    let estate = createEstate();
     let plants = getAllTestPlants();
 
     for (let plant of plants) {
-        let plantObj = getPlant(...plant);
+        let plantObj = createPlant(...plant);
         addPlantToEstate(estate, plantObj);
     }
 
