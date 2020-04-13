@@ -109,17 +109,19 @@ function createEstate() {
  *
  * This should add the given plant into one of the three arrays within the estate.
  */
-function addPlantToEstate(estate, plant) {
-  // Your Code Here!
-  // decide where to put the plant according to its features
-  /*
+function addPlantToEstate(estate, plant) {}
+
+//use push!
+
+// Your Code Here!
+// decide where to put the plant according to its features
+/*
     if the plant is a rose
         add it to the Rose Arbor
     if the plant is a perennial and it needs less <= 5 sun
         add it to the Perennial Garden
     else add it to the Slope Planters
     */
-}
 
 /* ------------------------------------------------
     Exercise Three
@@ -159,8 +161,10 @@ function addPlantToEstate(estate, plant) {
  */
 function describePlant(plant) {
   let description = "";
-  // Your Code Here!
-  // Return a string describing all the visual features of the given plant
+  for (let key in plant)
+    if (plant.hasOwnProperty(key)) {
+      description[key] = plant[key];
+    }
   return description;
 }
 
@@ -172,14 +176,18 @@ function describePlant(plant) {
  * // Example: "The Rose Garden has 10 types of plants in it.  It contains: A"
  */
 function describeGarden(gardenName, listOfPlants) {
+  let plant = gardenName.plant;
   let description = "";
-  // Your Code Here!
-  // Given a list of plants, describe every plant in the list.
-  // return a string which is the description.
-  // Hint: You can just call describePlant() for each plant in the list
-  // Concatenting the description for each plant together into one big string.
+  for (let plant in listOfPlants)
+    if (directory.plants === listOfPlants) result.indexOf(plant);
   return description;
 }
+
+// Your Code Here!
+// Given a list of plants, describe every plant in the list.
+// return a string which is the description.
+// Hint: You can just call describePlant() for each plant in the list
+// Concatenting the description for each plant together into one big string.
 
 /**
  * describeEstate
