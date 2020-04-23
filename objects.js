@@ -234,27 +234,18 @@ function describeEstate(estate) {
 //
 
 function calculateWaterUsagePerWeek(estate) {
-  let total = 0;
-  for (let gardenName in estate) {
-    let garden = estate[gardenName];
-    for (let plant of garden) {
-      total += plant.gallonsWaterPerWeek;
-    }
-  }
-  let newTotal = Math.floor(total);
-  return newTotal;
+  let numGallons = 0;
+  estate.roseArbor.forEach(function (plant) {
+    numGallons += plant.gallonsWaterPerWeek;
+  });
+  estate.perennialGarden.forEach(function (plant) {
+    numGallons += plant.gallonsWaterPerWeek;
+  });
+  estate.slopePlanters.forEach(function (plant) {
+    numGallons += plant.gallonsWaterPerWeek;
+  });
+  return Math.round(numGallons);
 }
-
-// console.log(estate);
-// let numGallons = 0;
-// let vals = Object.keys(estate.roseArbor);
-// console.log(vals);
-// for (let value of vals) {
-//   numGallons[value] = estate[value];
-//   return numGallons;
-// }
-
-// const estateWater = Object.value(estate).gallonsWaterPerWeek;
 
 /* ---------------------------------------------------------------------------
     Exercise Five
@@ -285,13 +276,12 @@ function calculateWaterUsagePerWeek(estate) {
  *
  */
 function cloneRose(plant) {
-  let plant = {};
-  for (let key in plant) {
-    if (plant.hasOwnProperty(key)) {
-      copy[key] = plant[key];
-    }
+  let clone = {};
+  let propertyArr = Object.keys(plant);
+  for (let key of propertyArr) {
+    clone[key] = plant[key];
   }
-  return copy;
+  return clone;
 }
 
 //
@@ -346,6 +336,17 @@ function changeColorOfPlant(plant) {
  * Otherwise you will produce flowerless roses.
  */
 function cloneAllTheRosesAndChangeTheirColors(estate) {
+  let newRoses = [];
+  estate.roseArbor.forEach(function (rose) {
+    let newPlant = cloneRose(rose);
+    changeColorOfPlant(newPlant);
+    if (!newPlant.isFlawed) {
+      newRoses.push(newPlant);
+    }
+  });
+
+  estate.roseArbor = estate.roseArbor.concat(newRoses);
+  return estate;
   // Your Code Here!
   // for each rose...
   // Hint: Watch out for modifying an array you are currently looping through!  How can you avoid that?
