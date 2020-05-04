@@ -59,18 +59,7 @@ function createPlant(
   gallonsWaterPerWeek,
   amountOfSunNeeded
 ) {
-  let plant = {
-    type,
-    isPerennial,
-    leafDescription,
-    leafColor,
-    flowerColor,
-    flowerDescription,
-    gallonsWaterPerWeek,
-    amountOfSunNeeded,
-  };
 
-  return plant;
 }
 
 /* ------------------------------------------------
@@ -116,14 +105,7 @@ function addPlantToEstate(estate, plant) {
     estate.perennialGarden.push(plant);
   } else {
     estate.slopePlanters.push(plant);
-  }
-}
 
-//use push!
-
-// Your Code Here!
-// decide where to put the plant according to its features
-/*
     if the plant is a rose
         add it to the Rose Arbor
     if the plant is a perennial and it needs less <= 5 sun
@@ -168,6 +150,7 @@ function addPlantToEstate(estate, plant) {
  * Example: "A Rose which has green leaves that are rounded with a point.  The flowers are red concentric circles of pedals. "
  */
 function describePlant(plant) {
+
   let description = `A ${plant.type} has ${plant.leafColor} leaves that are ${plant.leafDescription}. The flowers are ${plant.flowerColor}.`;
 
   return description;
@@ -181,11 +164,12 @@ function describePlant(plant) {
  * // Example: "The Rose Garden has 10 types of plants in it.  It contains: A"
  */
 function describeGarden(gardenName, listOfPlants) {
+
   let description = `${gardenName} has ${listOfPlants.length} types of plants in it. It contains: `;
   for (let plant of listOfPlants) {
     description += "\n" + describePlant(plant);
   }
-  return description;
+
 }
 
 // Your Code Here!
@@ -208,7 +192,7 @@ function describeEstate(estate) {
     description += "\n" + describeGarden(gardenName, listOfPlants);
   }
 
-  return description;
+
 }
 
 /* ---------------------------------------------------------------------------
@@ -230,8 +214,7 @@ function describeEstate(estate) {
  * Make a loop for each garden to tally the number of gallons needed by all the plants, then
  * add those up to get the total water usage.
  */
-//estate is the object
-//
+
 
 function calculateWaterUsagePerWeek(estate) {
   let numGallons = 0;
@@ -245,6 +228,7 @@ function calculateWaterUsagePerWeek(estate) {
     numGallons += plant.gallonsWaterPerWeek;
   });
   return Math.round(numGallons);
+
 }
 
 /* ---------------------------------------------------------------------------
@@ -268,6 +252,8 @@ function calculateWaterUsagePerWeek(estate) {
 /**
  * cloneRose
  * @param {Object} plant - A plant object
+
+
  * This should return a new object, which is a clone of the given plant.
  * The clone should have identitcal properties to the given plant, except for the color.
  *
@@ -281,7 +267,7 @@ function cloneRose(plant) {
   for (let key of propertyArr) {
     clone[key] = plant[key];
   }
-  return clone;
+
 }
 
 //
@@ -347,6 +333,7 @@ function cloneAllTheRosesAndChangeTheirColors(estate) {
 
   estate.roseArbor = estate.roseArbor.concat(newRoses);
   return estate;
+
   // Your Code Here!
   // for each rose...
   // Hint: Watch out for modifying an array you are currently looping through!  How can you avoid that?
