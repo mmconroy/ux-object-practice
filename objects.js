@@ -73,6 +73,107 @@ function createPlant(
   return plant;
 }
 
+class Plant {
+  constructor(
+    type,
+    isPerennial,
+    leafDescription,
+    leafColor,
+    flowerColor,
+    flowerDescription,
+    gallonsWaterPerWeek,
+    amountOfSunNeeded
+  ) {
+    this.type = type;
+    this.isPerennial = isPerennial;
+    this.leafDescription = leafDescription;
+    this.leafColor = leafColor;
+    this.flowerColor = flowerColor;
+    this.flowerDescription = flowerDescription;
+    this.gallonsWaterPerWeek = gallonsWaterPerWeek;
+    this.amountOfSunNeeded = amountOfSunNeeded;
+  }
+
+  describePlant = () =>{
+    let description = `A ${this.type} has ${this.leafColor} leaves that are ${this.leafDescription}. The flowers are ${this.flowerColor}.`;
+
+    return description;
+  }
+
+  // This function is already done for you.
+  // The changes are all highlighted in bold
+  changeColor() {
+    let newColors = [
+      "Amber",
+      "Crimson",
+      "Aqua",
+      "Cerulean Blue",
+      "Flamingo",
+      "Gun Smoke",
+      "Jade",
+      "Merigold",
+      "Mustard",
+      "Periwinkle",
+    ];
+    // ~~ Magic Genetic Engineering ~~
+    let randIndex = Math.floor(Math.random() * newColors.length);
+    if (this.isFlawed) {
+      this.flowerDescription = "wilted sad buds with no pedals.";
+      this.flowerColor = null;
+    } else {
+      this.flowerColor = newColors[randIndex];
+    }
+    let randomChance = Math.floor(Math.random() * 3);
+    if (randomChance < 1) {
+      this.isFlawed = true;
+    }
+  }
+
+  clone() {
+    let clone = new Plant;
+    for (let key in plant) {
+      clone[key] = plant[key];
+    }
+    return clone;
+  }
+}
+
+class Garden {
+  constructor(name, plants = []) {
+    this.name = name;
+    this.plants = plants;
+  }
+
+  describeGarden = () => {
+    let description = `${this.name} has ${this.plants.length} types of plants in it. It contains: `;
+    for (let plant of listOfPlants) {
+      description += "\n" + describePlant(plant);
+    }
+    return description;
+  }
+}
+
+
+
+
+let myEstate = new Estate();
+ 
+let firstPlant = new Plant("rose", true, "rounded with a point", "green", "red", "concentric circles of pedals", 0.8, 4);
+myEstate.addPlant(firstPlant);
+ 
+let secondPlant = new Plant("orchid", true, "long and wide with a point at the end", "green", "fuscia", "pedals surrounding a central mouth", 1.2, 2);
+myEstate.addPlant(secondPlant);
+ 
+let thirdPlant = new Plant(["marigold", false, "thin and jagged along branches", "green", "yellow and orange", "rounded pedals in groups of five with a darker orange center", 0.8, 4);
+myEstate.addPlant(thirdPlant);
+ 
+myEstate.describe(); // This should print the whole description of the estate.
+ 
+myEstate.calculateWaterUsagePerWeek(); // This should print 2.8
+ 
+myEstate.cloneAllTheRosesAndChangeTheirColors(); // This should clone the rose and make a second one.
+console.log(myEstate.roseArbor.plants.length == 2);
+
 /* ------------------------------------------------
     Exercise Two
 
