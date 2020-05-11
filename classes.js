@@ -104,7 +104,7 @@ class Estate {
     let description = `The estate has ${estateLength} gardens.`;
     for (let gardenName in this) {
       let garden = this[gardenName];
-      description += "\n" + garden.describe;
+      description += "\n" + garden.describe();
     }
     return description;
   }
@@ -123,11 +123,11 @@ class Estate {
     let clonedRoses = [];
     for (let rose of this.roseArbor.plants) {
       if (!rose.isFlawed) {
-        clonedRoses.push();
+        clonedRoses.push(rose.clone());
       }
     }
 
-    this.roseArbor = this.roseArbor.plants.concat(clonedRoses);
+    this.roseArbor.plants = this.roseArbor.plants.concat(clonedRoses);
   }
 }
 
